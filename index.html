@@ -16,378 +16,52 @@
     --border: rgba(255,255,255,0.07);
     --text: #e8eaf0;
     --muted: #6b7280;
-    --gkp: #f59e0b;
-    --def: #3b82f6;
-    --mid: #10b981;
-    --fwd: #ef4444;
-    --bonus: #a78bfa;
-    --saves: #f59e0b;
-    --ded: #ef4444;
-    --mins: #6b7280;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
-
-  /* HERO */
-  .hero {
-    background: var(--darker);
-    border-bottom: 1px solid var(--border);
-    padding: 48px 24px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 200px;
-    background: radial-gradient(ellipse, rgba(0,255,135,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--green);
-    border: 1px solid rgba(0,255,135,0.3);
-    padding: 4px 14px;
-    border-radius: 100px;
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(42px, 8vw, 80px);
-    letter-spacing: 2px;
-    line-height: 1;
-    color: #fff;
-    margin-bottom: 8px;
-  }
+  .hero { background: var(--darker); border-bottom: 1px solid var(--border); padding: 56px 24px 48px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 700px; height: 220px; background: radial-gradient(ellipse, rgba(0,255,135,0.13) 0%, transparent 70%); pointer-events: none; }
+  .hero-badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--green); border: 1px solid rgba(0,255,135,0.3); padding: 4px 14px; border-radius: 100px; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 9vw, 88px); letter-spacing: 2px; line-height: 1; color: #fff; margin-bottom: 12px; }
   .hero h1 span { color: var(--green); }
-  .hero p {
-    color: var(--muted);
-    font-size: 15px;
-    max-width: 480px;
-    margin: 0 auto 32px;
-    line-height: 1.6;
-  }
-
-  /* INPUT AREA */
-  .input-area {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  .input-wrap {
-    flex: 1;
-    min-width: 200px;
-    position: relative;
-  }
-  .input-wrap input {
-    width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 13px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .input-wrap input:focus { border-color: rgba(0,255,135,0.4); }
-  .input-wrap input::placeholder { color: var(--muted); }
-  .btn-load {
-    background: var(--green);
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    padding: 13px 28px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    white-space: nowrap;
-  }
-  .btn-load:hover { background: var(--green-dim); }
-  .btn-load:active { transform: scale(0.97); }
-  .btn-load:disabled { background: #2d3748; color: var(--muted); cursor: not-allowed; transform: none; }
-
-  /* TABS */
-  .tabs-bar {
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-    padding: 24px 24px 0;
-    flex-wrap: wrap;
-  }
-  .tab-btn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .tab-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
-  .tab-btn.active { background: var(--green); color: #000; border-color: var(--green); }
-
-  /* STATUS */
-  #status {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--muted);
-    font-size: 14px;
-  }
-  .progress-bar-wrap {
-    max-width: 320px;
-    margin: 12px auto 0;
-    background: var(--card);
-    border-radius: 100px;
-    height: 4px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 4px;
-    background: var(--green);
-    border-radius: 100px;
-    transition: width 0.3s;
-  }
-
-  /* MAIN CONTENT */
-  #main-content { padding: 24px; max-width: 1200px; margin: 0 auto; }
-
-  /* VIEW: MANAGERS */
-  .managers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    gap: 20px;
-  }
-  .manager-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    transition: border-color 0.2s;
-  }
-  .manager-card:hover { border-color: rgba(0,255,135,0.2); }
-  .manager-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-  }
-  .manager-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-    color: #fff;
-    line-height: 1.1;
-  }
-  .manager-meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .rank-badge {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 12px;
-    text-align: center;
-    min-width: 60px;
-  }
-  .rank-badge .rank-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--green);
-    line-height: 1;
-  }
-  .rank-badge .rank-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
-
-  .section-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .section-block { margin-bottom: 16px; }
-
-  /* BAR ROWS */
-  .bar-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 5px 0;
-  }
-  .bar-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    min-width: 88px;
-    padding: 2px 8px;
-    border-radius: 100px;
-    text-align: center;
-    letter-spacing: 0.3px;
-  }
-  .bar-track {
-    flex: 1;
-    background: rgba(255,255,255,0.06);
-    border-radius: 100px;
-    height: 8px;
-    overflow: hidden;
-  }
-  .bar-fill {
-    height: 8px;
-    border-radius: 100px;
-    transition: width 0.6s cubic-bezier(0.16,1,0.3,1);
-  }
-  .bar-val {
-    font-size: 12px;
-    color: var(--text);
-    min-width: 36px;
-    text-align: right;
-    font-weight: 500;
-  }
-  .bar-val.neg { color: #ef4444; }
-
-  /* VIEW: TRADES */
-  .trades-list { display: flex; flex-direction: column; gap: 16px; }
-  .trade-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid #3b82f6;
-    border-radius: 14px;
-    padding: 18px;
-  }
-  .trade-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-  .trade-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 1px;
-    color: #fff;
-  }
-  .gw-pill {
-    font-size: 11px;
-    background: var(--card2);
-    color: var(--muted);
-    padding: 3px 10px;
-    border-radius: 100px;
-    border: 1px solid var(--border);
-  }
-  .trade-sides { display: flex; gap: 12px; }
-  .trade-side {
-    flex: 1;
-    background: var(--card2);
-    border-radius: 10px;
-    padding: 12px;
-    min-width: 0;
-  }
-  .trade-side-name {
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-  .trade-player-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    padding: 4px 0;
-    border-bottom: 1px solid var(--border);
-    gap: 8px;
-  }
-  .trade-player-row:last-of-type { border-bottom: none; }
-  .trade-player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
-  .pts-pills { display: flex; gap: 5px; flex-shrink: 0; }
-  .pts-pill {
-    font-size: 10px;
-    padding: 1px 7px;
-    border-radius: 100px;
-    font-weight: 600;
-  }
-  .pts-pill.total { background: rgba(59,130,246,0.2); color: #93c5fd; }
-  .pts-pill.started { background: rgba(16,185,129,0.2); color: #6ee7b7; }
-  .trade-totals {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .total-pill {
-    font-size: 12px;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-weight: 600;
-  }
-  .total-pill.total { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
-  .total-pill.started { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
-  .winner-pill { background: rgba(0,255,135,0.15); color: var(--green); border: 1px solid rgba(0,255,135,0.3); font-size: 11px; padding: 3px 10px; border-radius: 100px; font-weight: 600; }
-  .tied-pill { background: rgba(107,114,128,0.2); color: var(--muted); border: 1px solid var(--border); font-size: 11px; padding: 3px 10px; border-radius: 100px; }
-
-  /* SUMMARY STRIP */
-  .summary-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .summary-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-  }
-  .summary-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
-  .summary-value { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--green); letter-spacing: 1px; line-height: 1; }
-  .summary-value.sm { font-size: 16px; font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--text); margin-top: 2px; }
-
-  /* LEGEND */
-  .legend {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    padding: 12px 16px;
-    background: var(--card);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
-  .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-
-  /* ERROR */
-  .error-msg { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; border-radius: 10px; padding: 14px 18px; font-size: 14px; margin: 24px; }
-
-  /* FOOTER */
-  .footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 48px; }
-
-  @media(max-width: 600px) {
-    .managers-grid { grid-template-columns: 1fr; }
-    .trade-sides { flex-direction: column; }
-    .hero h1 { font-size: 48px; }
-  }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+  .steps-section { max-width: 680px; margin: 56px auto; padding: 0 24px; }
+  .steps-heading { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: #fff; margin-bottom: 24px; text-align: center; }
+  .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin-bottom: 12px; display: flex; gap: 20px; align-items: flex-start; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--green); line-height: 1; min-width: 28px; text-align: center; margin-top: 2px; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .generate-area { max-width: 680px; margin: 0 auto 56px; padding: 0 24px; }
+  .generate-card { background: var(--card); border: 1px solid rgba(0,255,135,0.2); border-radius: 16px; padding: 28px; }
+  .generate-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: #fff; margin-bottom: 16px; }
+  .input-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  .input-row input { flex: 1; min-width: 180px; background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; }
+  .input-row input:focus { border-color: rgba(0,255,135,0.4); }
+  .input-row input::placeholder { color: var(--muted); }
+  .btn-generate { background: var(--green); color: #000; border: none; border-radius: 10px; padding: 12px 24px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.1s; white-space: nowrap; }
+  .btn-generate:hover { background: var(--green-dim); }
+  .btn-generate:active { transform: scale(0.97); }
+  .bookmarklet-output { display: none; }
+  .bookmarklet-output.visible { display: block; }
+  .drag-instruction { font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; padding: 10px 14px; background: rgba(0,255,135,0.05); border: 1px solid rgba(0,255,135,0.15); border-radius: 8px; }
+  .drag-instruction strong { color: var(--green); }
+  .bookmarklet-link-wrap { display: flex; align-items: center; gap: 12px; background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+  .bookmarklet-link { flex: 1; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--green); background: transparent; border: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: grab; text-decoration: none; display: block; }
+  .btn-copy { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: var(--text); cursor: pointer; transition: border-color 0.2s; white-space: nowrap; flex-shrink: 0; }
+  .btn-copy:hover { border-color: rgba(255,255,255,0.2); }
+  .btn-copy.copied { color: var(--green); border-color: rgba(0,255,135,0.3); }
+  .alt-instructions { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .alt-instructions strong { color: var(--text); }
+  .features-section { max-width: 900px; margin: 0 auto 56px; padding: 0 24px; }
+  .features-heading { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: #fff; margin-bottom: 20px; text-align: center; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .feature-icon { font-size: 20px; margin-bottom: 10px; width: 40px; height: 40px; border-radius: 10px; background: rgba(0,255,135,0.1); display: flex; align-items: center; justify-content: center; }
+  .feature-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 20px; }
+  @media(max-width: 500px) { .step-card { flex-direction: column; gap: 8px; } .input-row { flex-direction: column; } }
 </style>
 </head>
 <body>
@@ -395,340 +69,107 @@
 <div class="hero">
   <div class="hero-badge">Draft League Tools</div>
   <h1>FPL <span>Draft</span><br>Analyser</h1>
-  <p>Manager breakdowns, trade analysis and scoring stats — all pulled live from the FPL Draft API.</p>
-  <div class="input-area">
-    <div class="input-wrap">
-      <input type="number" id="leagueInput" placeholder="Enter league ID (e.g. 4880)" />
+  <p>Manager breakdowns, trade analysis and scoring stats — pulled live from the FPL Draft API.</p>
+</div>
+
+<div class="steps-section">
+  <div class="steps-heading">How to use it</div>
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Enter your league ID and generate your bookmarklet</div>
+      <div class="step-desc">Type your FPL Draft league ID below and click Generate. A personal bookmarklet link will appear, pre-loaded with your league.</div>
     </div>
-    <button class="btn-load" id="loadBtn" onclick="loadAll()">Load League</button>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Drag the link to your bookmarks bar</div>
+      <div class="step-desc">Make sure your bookmarks bar is visible (Ctrl+Shift+B on most browsers), then drag the green link straight onto it. Or use the manual copy instructions below it.</div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Go to draft.premierleague.com while logged in</div>
+      <div class="step-desc">The analyser needs your FPL session to fetch data. Make sure you are logged in on the FPL Draft site in the same browser.</div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-title">Click your bookmark — the analyser opens instantly</div>
+      <div class="step-desc">A full-screen panel will appear showing manager breakdowns and trade analysis. It takes 30–60 seconds to load all the data.</div>
+    </div>
   </div>
 </div>
 
-<div id="status"></div>
-<div id="tabs-bar" style="display:none;" class="tabs-bar">
-  <button class="tab-btn active" onclick="showTab('managers')">Manager Analysis</button>
-  <button class="tab-btn" onclick="showTab('trades')">Trade Analysis</button>
+<div class="generate-area">
+  <div class="generate-card">
+    <h2>Generate your bookmarklet</h2>
+    <div class="input-row">
+      <input type="number" id="leagueInput" placeholder="Enter league ID (e.g. 4880)" />
+      <button class="btn-generate" onclick="generate()">Generate</button>
+    </div>
+    <div class="bookmarklet-output" id="bookmarkletOutput">
+      <div class="drag-instruction">
+        <strong>Drag the link below onto your bookmarks bar.</strong> If you cannot see your bookmarks bar, press <strong>Ctrl+Shift+B</strong> (Windows) or <strong>Cmd+Shift+B</strong> (Mac) to show it.
+      </div>
+      <div class="bookmarklet-link-wrap">
+        <a id="bookmarkletLink" class="bookmarklet-link" href="#">FPL Draft Analyser</a>
+        <button class="btn-copy" id="copyBtn" onclick="copyBookmarklet()">Copy</button>
+      </div>
+      <div class="alt-instructions">
+        <strong>Cannot drag it?</strong> Click Copy, then right-click your bookmarks bar, choose "Add bookmark", paste the copied code as the URL, and name it "FPL Draft Analyser".
+      </div>
+    </div>
+  </div>
 </div>
-<div id="main-content"></div>
 
-<div class="footer">Built for FPL Draft leagues &bull; Data pulled live from draft.premierleague.com &bull; Must be logged in to FPL Draft</div>
+<div class="features-section">
+  <div class="features-heading">What the analyser shows</div>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">📊</div><div class="feature-title">Points by position</div><div class="feature-desc">See how many points each manager earned from GKP, DEF, MID and FWD — started XI only.</div></div>
+    <div class="feature-card"><div class="feature-icon">🪑</div><div class="feature-title">Started vs benched</div><div class="feature-desc">Compare how many points were left on the bench vs the active XI across the season.</div></div>
+    <div class="feature-card"><div class="feature-icon">🎯</div><div class="feature-title">Scoring categories</div><div class="feature-desc">Goals, assists, clean sheets, bonus, saves, defensive contributions, deductions and minutes — all broken down per manager.</div></div>
+    <div class="feature-card"><div class="feature-icon">🔄</div><div class="feature-title">Trade analysis</div><div class="feature-desc">Every trade with total pts and started pts per player since the trade gameweek, with a winner on each deal.</div></div>
+    <div class="feature-card"><div class="feature-icon">🛡️</div><div class="feature-title">Defensive contributions</div><div class="feature-desc">DC points using your league rule: DEF 10+ DC = 2pts, MID/FWD 12+ DC = 2pts. GKPs excluded.</div></div>
+    <div class="feature-card"><div class="feature-icon">🏆</div><div class="feature-title">Live standings</div><div class="feature-desc">Managers sorted by current league rank with season totals on every card.</div></div>
+  </div>
+</div>
+
+<div class="footer">Built for FPL Draft leagues &bull; Data pulled live from draft.premierleague.com &bull; Must be logged into FPL Draft to use</div>
 
 <script>
-const CURRENT_GW = 30;
-let globalData = null;
-
-function showTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', (i===0&&tab==='managers')||(i===1&&tab==='trades')));
-  if (!globalData) return;
-  if (tab === 'managers') renderManagers(globalData);
-  else renderTrades(globalData);
+function buildCode(lid) {
+  const GW = 30;
+  return `javascript:(function(){const LID='${lid}';const CGW=${GW};const ov=document.createElement('div');ov.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:99999;overflow-y:auto;font-family:sans-serif;padding:20px;';const box=document.createElement('div');box.style.cssText='background:#0a0e1a;border-radius:14px;padding:24px;max-width:1100px;margin:0 auto;color:#e8eaf0;';box.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div><div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#00ff87;border:1px solid rgba(0,255,135,0.3);padding:3px 12px;border-radius:100px;display:inline-block;margin-bottom:8px;">Draft League Tools</div><h2 style="font-size:22px;font-weight:700;color:#fff;margin:0;">FPL Draft Analyser</h2></div><button id="cls" style="border:none;background:#1a2236;color:#e8eaf0;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:13px;">Close</button></div><p style="color:#6b7280;font-size:13px;margin:4px 0 16px;">League ${lid} | GW1\u2013'+CGW+'</p><div style="display:flex;gap:8px;margin-bottom:18px;"><button onclick="sTab(\\\'m\\\')" id="tb-m" style="background:#00ff87;color:#000;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;">Manager Analysis</button><button onclick="sTab(\\\'t\\\')" id="tb-t" style="background:#1a2236;color:#6b7280;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;">Trade Analysis</button></div><div id="out"><p style="color:#6b7280;font-size:13px;">Loading...</p></div>';ov.appendChild(box);document.body.appendChild(ov);box.querySelector('#cls').onclick=()=>ov.remove();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});const O=box.querySelector('#out');let gD=null;function sH(h){O.innerHTML=h;}function sTab(t){const mBtn=document.getElementById('tb-m');const tBtn=document.getElementById('tb-t');const aS='background:#00ff87;color:#000;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;';const iS='background:#1a2236;color:#6b7280;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;';mBtn.style.cssText=t==='m'?aS:iS;tBtn.style.cssText=t==='t'?aS:iS;if(!gD)return;t==='m'?rM(gD):rT(gD);}async function api(p){const r=await fetch('/api'+p,{credentials:'include'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}async function run(){try{sH('<p style="color:#6b7280;font-size:13px;">Fetching league data...</p>');const[boot,lD,trD]=await Promise.all([api('/bootstrap-static'),api('/league/'+LID+'/details'),api('/draft/league/'+LID+'/trades')]);const pl={};(boot.elements||[]).forEach(p=>{pl[p.id]=p;});const en=lD.league_entries||[];const sM={};(lD.standings||[]).forEach(s=>{sM[s.league_entry]=s;});const pM={};const gwTotals={};const pK=[];en.forEach(e=>{for(let g=1;g<=CGW;g++)pK.push({l:e.id,e:e.entry_id,g});});const B=15;for(let i=0;i<pK.length;i+=B){await Promise.all(pK.slice(i,i+B).map(async({l,e,g})=>{try{const d=await api('/entry/'+e+'/event/'+g);pM[l+'_'+g]=d.picks||[];if(!gwTotals[l])gwTotals[l]={};gwTotals[l][g]=d.entry_history?d.entry_history.points:null;}catch(err){pM[l+'_'+g]=[];}}));sH('<p style="color:#6b7280;font-size:13px;">Fetching picks... '+Math.min(i+B,pK.length)+' / '+pK.length+'</p>');}sH('<p style="color:#6b7280;font-size:13px;">Fetching player data...</p>');const aPI=[...new Set(Object.values(pM).flatMap(p=>p.map(pk=>pk.element)))];const pH={},sH2={};const PB=20;for(let i=0;i<aPI.length;i+=PB){await Promise.all(aPI.slice(i,i+PB).map(async id=>{try{const d=await api('/element-summary/'+id);pH[id]={};sH2[id]={};(d.history||[]).forEach(h=>{pH[id][h.event]=h.total_points||0;sH2[id][h.event]={goals:h.goals_scored||0,assists:h.assists||0,cs:h.clean_sheets||0,bonus:h.bonus||0,saves:h.saves||0,yc:h.yellow_cards||0,rc:h.red_cards||0,gc:h.goals_conceded||0,og:h.own_goals||0,pm:h.penalties_missed||0,ps:h.penalties_saved||0,mins:h.minutes||0,dc:h.defensive_contribution||0};});}catch(e){pH[id]={};sH2[id]={};}}))}const posMap={1:'GKP',2:'DEF',3:'MID',4:'FWD'};function gPos(id){const p=pl[id];return p?posMap[p.element_type]||'?':'?';}function gPT(id){const p=pl[id];return p?p.element_type:0;}function gPts(id,gw){return(pH[id]||{})[gw]||0;}function gSt(id,gw){return(sH2[id]||{})[gw]||{goals:0,assists:0,cs:0,bonus:0,saves:0,yc:0,rc:0,gc:0,og:0,pm:0,ps:0,mins:0,dc:0};}function cCat(id,gw){const s=gSt(id,gw);const p=gPT(id);const dc=p===1?0:p===2?(s.dc>=10?2:0):(s.dc>=12?2:0);return{goals:s.goals*(p<=2?6:p===3?5:4),assists:s.assists*3,cs:s.cs*(p<=2?4:p===3?1:0),bonus:s.bonus,saves:Math.floor(s.saves/3)+s.ps*5,dc,deductions:s.yc*-1+s.rc*-3+(p<=2?Math.floor(s.gc/2)*-1:0)+s.og*-2+s.pm*-2,minutes:(s.mins>0?1:0)+(s.mins>=60?1:0)};}function pF(id,fg){const h=pH[id]||{};let t=0;for(let g=fg;g<=CGW;g++)t+=h[g]||0;return t;}function spF(lei,id,fg){const h=pH[id]||{};let t=0;for(let g=fg;g<=CGW;g++){const pk=(pM[lei+'_'+g]||[]).find(p=>p.element===id);if(pk&&pk.position<=11)t+=h[g]||0;}return t;}const mxT={st:0,as:0,bn:0,GKP:0,DEF:0,MID:0,FWD:0,goals:0,assists:0,cs:0,bonus:0,saves:0,dc:0,deductions:0,minutes:0};const mS=en.map(e=>{let st=0,as=0,allPts=0;const pp={GKP:0,DEF:0,MID:0,FWD:0};const cp={goals:0,assists:0,cs:0,bonus:0,saves:0,dc:0,deductions:0,minutes:0};for(let g=1;g<=CGW;g++){const picks=pM[e.id+'_'+g]||[];const gwTotal=gwTotals[e.id]&&gwTotals[e.id][g]!=null?gwTotals[e.id][g]:null;let stPts=0;let allPicksPts=0;picks.forEach(pk=>{const pts=gPts(pk.element,g);const pos=gPos(pk.element);allPicksPts+=pts;if(pk.position<=11){stPts+=pts;if(pp[pos]!==undefined)pp[pos]+=pts;const cat=cCat(pk.element,g);Object.keys(cat).forEach(k=>{cp[k]+=cat[k];});}});st+=stPts;const gwPts=gwTotal!==null?gwTotal:allPicksPts;const asPts=Math.max(0,gwPts-stPts);as+=asPts;allPts+=gwPts;}const bn=Math.max(0,allPts-st-as);mxT.st=Math.max(mxT.st,st);mxT.as=Math.max(mxT.as,as);mxT.bn=Math.max(mxT.bn,bn);Object.keys(pp).forEach(k=>mxT[k]=Math.max(mxT[k],pp[k]));Object.keys(cp).forEach(k=>{if(k!=='deductions')mxT[k]=Math.max(mxT[k],cp[k]);else mxT.deductions=Math.max(mxT.deductions,Math.abs(cp[k]));});const s=sM[e.id]||{};return{id:e.id,name:e.entry_name||(e.player_first_name+' '+e.player_last_name),rank:s.rank||999,total:s.total||0,st,as,bn,pp,cp};}).sort((a,b)=>a.rank-b.rank);const rTr=(trD.trades||[]).filter(t=>Array.isArray(t.tradeitem_set)&&t.tradeitem_set.length>0).sort((a,b)=>a.event-b.event);const tS=rTr.map((t,i)=>{const oG=t.tradeitem_set.map(i=>i.element_in).filter(Boolean);const rG=t.tradeitem_set.map(i=>i.element_out).filter(Boolean);const oE=en.find(e=>e.id===t.offered_entry)||{};const rE=en.find(e=>e.id===t.received_entry)||{};const oN=oE.entry_name||(oE.player_first_name+' '+oE.player_last_name)||'Manager '+t.offered_entry;const rN=rE.entry_name||(rE.player_first_name+' '+rE.player_last_name)||'Manager '+t.received_entry;return{i:i+1,gw:t.event,oN,rN,oG,rG,oTP:oG.reduce((s,id)=>s+pF(id,t.event),0),rTP:rG.reduce((s,id)=>s+pF(id,t.event),0),oSP:oG.reduce((s,id)=>s+spF(t.offered_entry,id,t.event),0),rSP:rG.reduce((s,id)=>s+spF(t.received_entry,id,t.event),0),pN:id=>{const p=pl[id];return p?p.first_name+' '+p.second_name:'Player '+id;},pF,spF,oEid:t.offered_entry,rEid:t.received_entry};});gD={mS,tS,mxT,pl};rM(gD);}catch(e){sH('<p style="color:#ef4444;font-size:13px;">Error: '+e.message+'</p>');}}function bar(lbl,col,val,max,neg){const pct=max>0?Math.round((Math.abs(val)/max)*100):0;return'<div style="display:flex;align-items:center;gap:10px;margin:5px 0;"><span style="font-size:10px;font-weight:600;color:'+col+';background:'+col+'22;padding:2px 8px;border-radius:100px;min-width:112px;text-align:center;white-space:nowrap;">'+lbl+'</span><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:100px;height:8px;overflow:hidden;"><div style="width:'+pct+'%;background:'+col+';height:8px;border-radius:100px;"></div></div><span style="font-size:12px;color:'+(neg?'#ef4444':'#e8eaf0')+';min-width:36px;text-align:right;font-weight:500;">'+val+'</span></div>';}function rM({mS,mxT}){const pC={GKP:'#f59e0b',DEF:'#3b82f6',MID:'#10b981',FWD:'#ef4444'};const cC={goals:'#ef4444',assists:'#3b82f6',cs:'#10b981',bonus:'#a78bfa',saves:'#f59e0b',dc:'#38bdf8',deductions:'#ef4444',minutes:'#6b7280'};const cL={goals:'Goals',assists:'Assists',cs:'Clean sheets',bonus:'Bonus',saves:'Saves/Pen saves',dc:'Def. contribution',deductions:'Deductions (YC/RC/GC/OG/PM)',minutes:'Minutes pts'};let h='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:18px;">';mS.forEach(m=>{const catSum=m.cp.goals+m.cp.assists+m.cp.cs+m.cp.bonus+m.cp.saves+m.cp.dc+m.cp.deductions+m.cp.minutes;h+='<div style="background:#111827;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.07);"><div><div style="font-size:17px;font-weight:700;color:#fff;">'+m.name+'</div><div style="font-size:12px;color:#6b7280;margin-top:3px;">Season total: '+m.total+' pts</div></div><div style="background:#1a2236;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:6px 12px;text-align:center;"><div style="font-size:20px;font-weight:700;color:#00ff87;line-height:1;">#'+(m.rank===999?'\u2014':m.rank)+'</div><div style="font-size:10px;color:#6b7280;letter-spacing:1px;text-transform:uppercase;">Rank</div></div></div><div style="margin-bottom:14px;"><div style="font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Points by position (started XI)</div>'+['GKP','DEF','MID','FWD'].map(pos=>bar(pos,pC[pos],m.pp[pos],mxT[pos],false)).join('')+'</div><div style="margin-bottom:14px;"><div style="font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;">Started / Auto-sub / Benched</div>'+bar('Started','#00ff87',m.st,mxT.st,false)+bar('Auto-sub','#38bdf8',m.as,mxT.as,false)+bar('Benched (unused)','#6b7280',m.bn,mxT.bn,false)+'</div><div><div style="font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;">Scoring categories <span style="font-weight:400;font-style:italic;text-transform:none;">(started XI, estimated \u2014 sum: '+catSum+')</span></div>'+Object.keys(cL).map(cat=>bar(cL[cat],cC[cat],m.cp[cat],cat==='deductions'?mxT.deductions:mxT[cat],cat==='deductions')).join('')+'</div></div>';});h+='</div>';sH(h);}function rT({tS}){if(!tS.length){sH('<p style="color:#6b7280;padding:40px;text-align:center;">No trades found.</p>');return;}const wins={};tS.forEach(t=>{if(t.oSP>t.rSP)wins[t.oN]=(wins[t.oN]||0)+1;else if(t.rSP>t.oSP)wins[t.rN]=(wins[t.rN]||0)+1;});const top=Object.entries(wins).sort((a,b)=>b[1]-a[1]);let h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;"><div style="background:#111827;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;"><div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Total trades</div><div style="font-size:28px;font-weight:700;color:#00ff87;">'+tS.length+'</div></div><div style="background:#111827;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;grid-column:span 2;"><div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Best trader</div><div style="font-size:16px;font-weight:600;color:#fff;margin-top:2px;">'+(top.length?top[0][0]+' \u2014 '+top[0][1]+' win'+(top[0][1]>1?'s':''):'No winner yet')+'</div></div></div>';h+='<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;padding:10px 14px;background:#111827;border-radius:8px;border:1px solid rgba(255,255,255,0.07);font-size:12px;color:#6b7280;"><span><span style="display:inline-block;width:9px;height:9px;background:#93c5fd;border-radius:2px;margin-right:5px;"></span>Total pts since trade</span><span><span style="display:inline-block;width:9px;height:9px;background:#6ee7b7;border-radius:2px;margin-right:5px;"></span>Started pts only</span><span style="margin-left:auto;font-style:italic;">Winner by started pts</span></div>';tS.forEach(t=>{const oW=t.oSP>t.rSP,rW=t.rSP>t.oSP,tied=t.oSP===t.rSP;function side(name,ids,eid,tP,sP,won,tie){return'<div style="flex:1;min-width:0;background:#1a2236;border-radius:10px;padding:12px;"><div style="font-size:11px;color:#6b7280;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;">'+name+'</div>'+ids.map(id=>{const tp=t.pF(id,t.gw);const sp=t.spF(eid,id,t.gw);return'<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05);gap:8px;"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#e8eaf0;">'+t.pN(id)+'</span><div style="display:flex;gap:5px;flex-shrink:0;"><span style="font-size:10px;background:rgba(59,130,246,0.2);color:#93c5fd;padding:1px 7px;border-radius:100px;font-weight:600;">'+tp+'</span><span style="font-size:10px;background:rgba(16,185,129,0.2);color:#6ee7b7;padding:1px 7px;border-radius:100px;font-weight:600;">'+sp+'</span></div></div>';}).join('')+'<div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px;"><span style="font-size:11px;background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.3);padding:2px 10px;border-radius:100px;font-weight:600;">'+tP+' total</span><span style="font-size:11px;background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3);padding:2px 10px;border-radius:100px;font-weight:600;">'+sP+' started</span>'+(won?'<span style="font-size:11px;background:rgba(0,255,135,0.15);color:#00ff87;border:1px solid rgba(0,255,135,0.3);padding:2px 10px;border-radius:100px;font-weight:600;">winner</span>':'')+(tie?'<span style="font-size:11px;background:rgba(107,114,128,0.2);color:#6b7280;border:1px solid rgba(107,114,128,0.3);padding:2px 10px;border-radius:100px;">tied</span>':'')+'</div></div>';}h+='<div style="border:1px solid rgba(255,255,255,0.07);border-left:3px solid #3b82f6;border-radius:12px;padding:14px;margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><span style="font-size:14px;font-weight:700;color:#fff;">Trade '+t.i+'</span><span style="font-size:11px;background:#1a2236;padding:3px 10px;border-radius:100px;color:#6b7280;border:1px solid rgba(255,255,255,0.07);">From GW'+t.gw+'</span></div><div style="display:flex;gap:10px;">'+side(t.oN,t.oG,t.oEid,t.oTP,t.oSP,oW,tied)+side(t.rN,t.rG,t.rEid,t.rTP,t.rSP,rW,tied)+'</div></div>';});sH(h);}run();})();`;
 }
 
-async function api(path) {
-  const r = await fetch('https://draft.premierleague.com/api' + path, { credentials: 'include' });
-  if (!r.ok) throw new Error('HTTP ' + r.status + ' on ' + path);
-  return r.json();
+function generate() {
+  const lid = document.getElementById('leagueInput').value.trim();
+  if (!lid) { alert('Please enter your league ID first'); return; }
+  const code = buildCode(lid);
+  const link = document.getElementById('bookmarkletLink');
+  link.href = code;
+  link.textContent = 'FPL Draft Analyser — League ' + lid;
+  document.getElementById('bookmarkletOutput').classList.add('visible');
+  document.getElementById('copyBtn').textContent = 'Copy';
+  document.getElementById('copyBtn').classList.remove('copied');
 }
 
-function setStatus(msg, pct) {
-  document.getElementById('status').innerHTML = `
-    <p>${msg}</p>
-    ${pct !== undefined ? `<div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pct}%"></div></div>` : ''}
-  `;
-}
-
-async function loadAll() {
-  const LID = document.getElementById('leagueInput').value.trim();
-  if (!LID) { alert('Please enter a league ID'); return; }
-  document.getElementById('loadBtn').disabled = true;
-  document.getElementById('tabs-bar').style.display = 'none';
-  document.getElementById('main-content').innerHTML = '';
-
-  try {
-    setStatus('Fetching league data...', 5);
-    const [boot, leagueData, tradesData] = await Promise.all([
-      api('/bootstrap-static'),
-      api('/league/' + LID + '/details'),
-      api('/draft/league/' + LID + '/trades')
-    ]);
-
-    const players = {};
-    (boot.elements || []).forEach(p => { players[p.id] = p; });
-    const entries = leagueData.league_entries || [];
-    const standings = leagueData.standings || [];
-    const standingsMap = {};
-    standings.forEach(s => { standingsMap[s.league_entry] = s; });
-
-    // Fetch all picks using entry_id
-    const picksMap = {};
-    const pickKeys = [];
-    entries.forEach(e => {
-      for (let gw = 1; gw <= CURRENT_GW; gw++) pickKeys.push({ leagueEntryId: e.id, entryId: e.entry_id, gw });
-    });
-
-    const BATCH = 15;
-    for (let i = 0; i < pickKeys.length; i += BATCH) {
-      const batch = pickKeys.slice(i, i + BATCH);
-      await Promise.all(batch.map(async ({ leagueEntryId, entryId, gw }) => {
-        try {
-          const d = await api('/entry/' + entryId + '/event/' + gw);
-          picksMap[leagueEntryId + '_' + gw] = d.picks || [];
-        } catch(e) { picksMap[leagueEntryId + '_' + gw] = []; }
-      }));
-      setStatus('Fetching picks... ' + Math.min(i + BATCH, pickKeys.length) + ' / ' + pickKeys.length, 5 + Math.round((i / pickKeys.length) * 50));
-    }
-
-    setStatus('Fetching player histories...', 60);
-    const allPlayerIds = [...new Set(Object.values(picksMap).flatMap(p => p.map(pk => pk.element)))];
-    const ptsHistory = {}, statHistory = {};
-    const PBATCH = 20;
-    for (let i = 0; i < allPlayerIds.length; i += PBATCH) {
-      await Promise.all(allPlayerIds.slice(i, i + PBATCH).map(async id => {
-        try {
-          const d = await api('/element-summary/' + id);
-          ptsHistory[id] = {}; statHistory[id] = {};
-          (d.history || []).forEach(h => {
-            ptsHistory[id][h.event] = h.total_points || 0;
-            statHistory[id][h.event] = {
-              goals: h.goals_scored||0, assists: h.assists||0, cs: h.clean_sheets||0,
-              bonus: h.bonus||0, saves: h.saves||0, yc: h.yellow_cards||0,
-              rc: h.red_cards||0, gc: h.goals_conceded||0, og: h.own_goals||0,
-              pm: h.penalties_missed||0, ps: h.penalties_saved||0, mins: h.minutes||0,
-              dc: h.defensive_contribution||0
-            };
-          });
-        } catch(e) { ptsHistory[id] = {}; statHistory[id] = {}; }
-      }));
-      setStatus('Fetching player data... ' + Math.min(i + PBATCH, allPlayerIds.length) + ' / ' + allPlayerIds.length, 60 + Math.round((i / allPlayerIds.length) * 35));
-    }
-
-    setStatus('Building analysis...', 97);
-
-    const posMap = { 1:'GKP', 2:'DEF', 3:'MID', 4:'FWD' };
-    function getPos(id) { const p = players[id]; return p ? posMap[p.element_type]||'UNK' : 'UNK'; }
-    function getPosType(id) { const p = players[id]; return p ? p.element_type : 0; }
-    function getPlayerPts(id, gw) { return (ptsHistory[id]||{})[gw]||0; }
-    function getStats(id, gw) { return (statHistory[id]||{})[gw]||{goals:0,assists:0,cs:0,bonus:0,saves:0,yc:0,rc:0,gc:0,og:0,pm:0,ps:0,mins:0,dc:0}; }
-
-    function calcCatPts(id, gw) {
-      const s = getStats(id, gw); const pos = getPosType(id);
-      // DC rule: GKP=none, DEF=2pts if DC>=10, MID/FWD=2pts if DC>=12
-      const dcPts = pos===1 ? 0 : pos===2 ? (s.dc>=10?2:0) : (s.dc>=12?2:0);
-      return {
-        goals: s.goals * (pos<=2?6:pos===3?5:4),
-        assists: s.assists * 3,
-        cs: s.cs * (pos<=2?4:pos===3?1:0),
-        bonus: s.bonus,
-        saves: Math.floor(s.saves/3) + s.ps*5,
-        defensive_contribution: dcPts,
-        deductions: s.yc*-1 + s.rc*-3 + (pos<=2?Math.floor(s.gc/2)*-1:0) + s.og*-2 + s.pm*-2,
-        minutes: (s.mins>0?1:0) + (s.mins>=60?1:0)
-      };
-    }
-
-    function ptsFrom(id, fromGW) {
-      const hist = ptsHistory[id]||{};
-      let t = 0; for (let gw=fromGW; gw<=CURRENT_GW; gw++) t += hist[gw]||0; return t;
-    }
-    function startedPtsFrom(leagueEntryId, id, fromGW) {
-      const hist = ptsHistory[id]||{}; let t = 0;
-      for (let gw=fromGW; gw<=CURRENT_GW; gw++) {
-        const picks = picksMap[leagueEntryId+'_'+gw]||[];
-        const pk = picks.find(p=>p.element===id);
-        if (pk && pk.position<=11) t += hist[gw]||0;
-      }
-      return t;
-    }
-
-    // Build manager stats
-    const maxT = { started:0,benched:0,GKP:0,DEF:0,MID:0,FWD:0,goals:0,assists:0,cs:0,bonus:0,saves:0,defensive_contribution:0,deductions:0,minutes:0 };
-    const managerStats = entries.map(e => {
-      let started=0, benched=0;
-      const posPts = {GKP:0,DEF:0,MID:0,FWD:0};
-      const catPts = {goals:0,assists:0,cs:0,bonus:0,saves:0,defensive_contribution:0,deductions:0,minutes:0};
-      for (let gw=1; gw<=CURRENT_GW; gw++) {
-        const picks = picksMap[e.id+'_'+gw]||[];
-        picks.forEach(pk => {
-          const pts = getPlayerPts(pk.element, gw);
-          const pos = getPos(pk.element);
-          if (pk.position<=11) {
-            started += pts;
-            if (posPts[pos]!==undefined) posPts[pos] += pts;
-            const cat = calcCatPts(pk.element, gw);
-            Object.keys(cat).forEach(k => { catPts[k] += cat[k]; });
-          } else { benched += pts; }
-        });
-      }
-      maxT.started = Math.max(maxT.started, started);
-      maxT.benched = Math.max(maxT.benched, benched);
-      Object.keys(posPts).forEach(k => maxT[k] = Math.max(maxT[k], posPts[k]));
-      Object.keys(catPts).forEach(k => { if(k!=='deductions') maxT[k]=Math.max(maxT[k],catPts[k]); else maxT.deductions=Math.max(maxT.deductions,Math.abs(catPts[k])); });
-      const s = standingsMap[e.id]||{};
-      return { id: e.id, name: e.entry_name||(e.player_first_name+' '+e.player_last_name), rank: s.rank||999, total: s.total||0, started, benched, posPts, catPts };
-    }).sort((a,b)=>a.rank-b.rank);
-
-    // Build trade stats
-    const rawTrades = (tradesData.trades||[]).filter(t=>Array.isArray(t.tradeitem_set)&&t.tradeitem_set.length>0).sort((a,b)=>a.event-b.event);
-    const tradeStats = rawTrades.map((t,i) => {
-      const offGot = t.tradeitem_set.map(i=>i.element_in).filter(Boolean);
-      const recGot = t.tradeitem_set.map(i=>i.element_out).filter(Boolean);
-      const offEntry = entries.find(e=>e.id===t.offered_entry)||{};
-      const recEntry = entries.find(e=>e.id===t.received_entry)||{};
-      const offName = offEntry.entry_name||(offEntry.player_first_name+' '+offEntry.player_last_name)||('Manager '+t.offered_entry);
-      const recName = recEntry.entry_name||(recEntry.player_first_name+' '+recEntry.player_last_name)||('Manager '+t.received_entry);
-      return {
-        idx: i+1, gw: t.event, offName, recName,
-        offGot, recGot,
-        offTPts: offGot.reduce((s,id)=>s+ptsFrom(id,t.event),0),
-        recTPts: recGot.reduce((s,id)=>s+ptsFrom(id,t.event),0),
-        offSPts: offGot.reduce((s,id)=>s+startedPtsFrom(t.offered_entry,id,t.event),0),
-        recSPts: recGot.reduce((s,id)=>s+startedPtsFrom(t.received_entry,id,t.event),0),
-        playerName: id => { const p=players[id]; return p?p.first_name+' '+p.second_name:'Player '+id; },
-        ptsFrom, startedPtsFrom,
-        offEntry: t.offered_entry, recEntry: t.received_entry
-      };
-    });
-
-    globalData = { managerStats, tradeStats, maxT, players };
-    document.getElementById('status').innerHTML = '';
-    document.getElementById('tabs-bar').style.display = 'flex';
-    renderManagers(globalData);
-
-  } catch(err) {
-    document.getElementById('status').innerHTML = '';
-    document.getElementById('main-content').innerHTML = `<div class="error-msg">Error: ${err.message}<br><small>Make sure you're logged into draft.premierleague.com and the league ID is correct.</small></div>`;
-  }
-  document.getElementById('loadBtn').disabled = false;
-}
-
-function bar(label, color, val, max, isNeg) {
-  const pct = max > 0 ? Math.round((Math.abs(val)/max)*100) : 0;
-  return `<div class="bar-row">
-    <span class="bar-label" style="background:${color}20;color:${color};">${label}</span>
-    <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color};"></div></div>
-    <span class="bar-val${isNeg?' neg':''}">${val}</span>
-  </div>`;
-}
-
-function renderManagers({ managerStats, maxT }) {
-  const posColors = { GKP:'#f59e0b', DEF:'#3b82f6', MID:'#10b981', FWD:'#ef4444' };
-  const catColors = { goals:'#ef4444', assists:'#3b82f6', cs:'#10b981', bonus:'#a78bfa', saves:'#f59e0b', defensive_contribution:'#38bdf8', deductions:'#ef4444', minutes:'#6b7280' };
-  const catLabels = { goals:'Goals', assists:'Assists', cs:'Clean sheets', bonus:'Bonus', saves:'Saves/Pen saves', defensive_contribution:'Def. contribution', deductions:'Deductions', minutes:'Minutes pts' };
-
-  let html = `
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>GKP</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>DEF</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>MID</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>FWD</div>
-      <div class="legend-item" style="margin-left:auto;font-style:italic;">Scoring categories are estimates from stats. Position/started/benched totals are exact.</div>
-    </div>
-    <div class="managers-grid">`;
-
-  managerStats.forEach(m => {
-    html += `<div class="manager-card">
-      <div class="manager-header">
-        <div>
-          <div class="manager-name">${m.name}</div>
-          <div class="manager-meta">Season total: ${m.total} pts</div>
-        </div>
-        <div class="rank-badge">
-          <div class="rank-num">#${m.rank===999?'—':m.rank}</div>
-          <div class="rank-label">Rank</div>
-        </div>
-      </div>
-      <div class="section-block">
-        <div class="section-label">Points by position (started XI)</div>
-        ${['GKP','DEF','MID','FWD'].map(pos=>bar(pos,posColors[pos],m.posPts[pos],maxT[pos],false)).join('')}
-      </div>
-      <div class="section-block">
-        <div class="section-label">Started vs benched</div>
-        ${bar('Started','#00ff87',m.started,maxT.started,false)}
-        ${bar('Benched','#6b7280',m.benched,maxT.benched,false)}
-      </div>
-      <div class="section-block">
-        <div class="section-label">Points by scoring category (started XI, estimated)</div>
-        ${Object.keys(catLabels).map(cat=>bar(catLabels[cat],catColors[cat],m.catPts[cat],cat==='deductions'?maxT.deductions:maxT[cat],cat==='deductions')).join('')}
-      </div>
-    </div>`;
+function copyBookmarklet() {
+  const lid = document.getElementById('leagueInput').value.trim();
+  navigator.clipboard.writeText(buildCode(lid)).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
   });
-
-  html += '</div>';
-  document.getElementById('main-content').innerHTML = html;
 }
 
-function renderTrades({ tradeStats, players }) {
-  if (!tradeStats.length) {
-    document.getElementById('main-content').innerHTML = '<p style="text-align:center;color:var(--muted);padding:48px;">No trades found in this league.</p>';
-    return;
-  }
-
-  const wins = {};
-  tradeStats.forEach(t => {
-    if (t.offSPts > t.recSPts) wins[t.offName] = (wins[t.offName]||0)+1;
-    else if (t.recSPts > t.offSPts) wins[t.recName] = (wins[t.recName]||0)+1;
-  });
-  const top = Object.entries(wins).sort((a,b)=>b[1]-a[1]);
-
-  let html = `<div class="summary-strip">
-    <div class="summary-card"><div class="summary-label">Total trades</div><div class="summary-value">${tradeStats.length}</div></div>
-    <div class="summary-card"><div class="summary-label">Best trader</div><div class="summary-value sm">${top.length?top[0][0]:'—'}</div></div>
-    <div class="summary-card"><div class="summary-label">Trade wins</div><div class="summary-value">${top.length?top[0][1]:'—'}</div></div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#93c5fd"></div>Total pts since trade</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#6ee7b7"></div>Started pts only</div>
-    <div class="legend-item" style="margin-left:auto;font-style:italic;">Winner determined by started pts</div>
-  </div>
-  <div class="trades-list">`;
-
-  tradeStats.forEach(t => {
-    const offWin = t.offSPts > t.recSPts;
-    const recWin = t.recSPts > t.offSPts;
-    const tied = t.offSPts === t.recSPts;
-
-    function side(name, ids, entryId, tPts, sPts, won, tie) {
-      return `<div class="trade-side">
-        <div class="trade-side-name">${name}</div>
-        ${ids.map(id => {
-          const tp = t.ptsFrom(id, t.gw);
-          const sp = t.startedPtsFrom(entryId, id, t.gw);
-          return `<div class="trade-player-row">
-            <span class="trade-player-name">${t.playerName(id)}</span>
-            <div class="pts-pills">
-              <span class="pts-pill total">${tp}</span>
-              <span class="pts-pill started">${sp}</span>
-            </div>
-          </div>`;
-        }).join('')}
-        <div class="trade-totals">
-          <span class="total-pill total">${tPts} total</span>
-          <span class="total-pill started">${sPts} started</span>
-          ${won ? '<span class="winner-pill">winner</span>' : ''}
-          ${tie ? '<span class="tied-pill">tied</span>' : ''}
-        </div>
-      </div>`;
-    }
-
-    html += `<div class="trade-card">
-      <div class="trade-header">
-        <span class="trade-title">Trade ${t.idx}</span>
-        <span class="gw-pill">From GW${t.gw}</span>
-      </div>
-      <div class="trade-sides">
-        ${side(t.offName, t.offGot, t.offEntry, t.offTPts, t.offSPts, offWin, tied)}
-        ${side(t.recName, t.recGot, t.recEntry, t.recTPts, t.recSPts, recWin, tied)}
-      </div>
-    </div>`;
-  });
-
-  html += '</div>';
-  document.getElementById('main-content').innerHTML = html;
-}
-
-// Allow pressing Enter to load
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('leagueInput').addEventListener('keydown', e => { if(e.key==='Enter') loadAll(); });
+  document.getElementById('leagueInput').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
 });
 </script>
 </body>
